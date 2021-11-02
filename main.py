@@ -2,16 +2,17 @@ import pygame, os, time, random
 pygame.font.init()
 
 
+
 width, height =  750, 750
 win = pygame.display.set_mode((width, height))
-pygame.display.set_caption('Space Shooter')
+pygame.display.set_caption('Billy Hunter by djStens')
 
 
 
 
 # Load Images
-RED_SPACE_SHIP = pygame.image.load(os.path.join('assets', 'pixel_ship_red_small.png'))
-GREEN_SPACE_SHIP = pygame.image.load(os.path.join('assets', 'pixel_ship_green_small.png'))
+RED_SPACE_SHIP = pygame.image.load(os.path.join('assets', 'billy_face.png'))
+GREEN_SPACE_SHIP = pygame.image.load(os.path.join('assets', 'billy_face2 (1).png'))
 BLUE_SPACE_SHIP = pygame.image.load(os.path.join('assets', 'pixel_ship_blue_small.png'))
 
 
@@ -264,11 +265,11 @@ def main():
         player.move_lasers(-laser_vel, enemies)
 
 def main_menu():
-    title_font = pygame.font.SysFont('comicsans', 50)
+    title_font = pygame.font.SysFont('comicsans', 30)
     run = True
     while run:
         win.blit(BG, (0,0))
-        title_label = title_font.render('press the mouse to begin...', 1, (255, 255, 255))
+        title_label = title_font.render('Press The Mouse Button to Begin...', 1, (255, 255, 255))
         win.blit(title_label, (width/2 - title_label.get_width()/2, 350))
 
         pygame.display.update()
@@ -279,9 +280,11 @@ def main_menu():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 main()
 
+
     pygame.quit()
 
 
+game_over =True
 main_menu()
 
 
