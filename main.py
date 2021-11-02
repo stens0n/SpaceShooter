@@ -2,28 +2,28 @@ import pygame, os, time, random
 pygame.font.init()
 
 
-
 width, height =  750, 750
 win = pygame.display.set_mode((width, height))
 pygame.display.set_caption('Billy Hunter by djStens')
 
 
-
-
 # Load Images
 RED_SPACE_SHIP = pygame.image.load(os.path.join('assets', 'billy_face.png'))
 GREEN_SPACE_SHIP = pygame.image.load(os.path.join('assets', 'billy_face2 (1).png'))
-BLUE_SPACE_SHIP = pygame.image.load(os.path.join('assets', 'pixel_ship_blue_small.png'))
+BLUE_SPACE_SHIP = pygame.image.load(os.path.join('assets', 'billy3 (1).png'))
+PURPLE_SPACE_SHIP = pygame.image.load(os.path.join('assets', 'billy4.png'))
 
 
 # Player Ship
 YELLOW_SPACE_SHIP = pygame.image.load(os.path.join('assets', 'pixel_ship_yellow.png'))
+
 
 # Lasers
 RED_LASER = pygame.image.load(os.path.join('assets', 'pixel_laser_red.png'))
 GREEN_LASER = pygame.image.load(os.path.join('assets', 'pixel_laser_green.png'))
 BLUE_LASER = pygame.image.load(os.path.join('assets', 'pixel_laser_blue.png'))
 YELLOW_LASER = pygame.image.load(os.path.join('assets', 'pixel_laser_yellow.png'))
+
 
 # Background
 BG = pygame.transform.scale(pygame.image.load(os.path.join('assets', 'background-black.png')), (width, height))
@@ -78,8 +78,6 @@ class Ship:
                 self.lasers.remove(laser)
 
 
-
-
     def cooldown(self):
         if self.cool_down_counter >= self.COOLDOWN:
            self.cool_down_counter = 0
@@ -129,11 +127,13 @@ class Player(Ship):
         pygame.draw.rect(window, (255, 0, 0), (self.x, self.y + self.ship_img.get_height() + 10, self.ship_img.get_width(), 10))
         pygame.draw.rect(window, (0, 255, 0), (self.x, self.y + self.ship_img.get_height() + 10, self.ship_img.get_width() * (self.health/self.max_health), 10))
 
+
 class Enemy(Ship):
     COLOR_MAP = {
         'red': (RED_SPACE_SHIP, RED_LASER),
         'green': (GREEN_SPACE_SHIP, GREEN_LASER),
-        'blue': (BLUE_SPACE_SHIP, BLUE_LASER)
+        'blue': (BLUE_SPACE_SHIP, BLUE_LASER),
+        'purple': (PURPLE_SPACE_SHIP, GREEN_LASER)
     }
 
 
@@ -158,11 +158,6 @@ def collide(obj1, obj2):
     return obj1.mask.overlap(obj2.mask, (offset_x, offset_y)) != None
 
 
-
-
-
-
-
 def main():
     run = True
     FPS = 60
@@ -176,7 +171,7 @@ def main():
     enemy_vel = 1
 
     player_vel = 5
-    laser_vel = 6
+    laser_vel = 8
 
     player = Player(300, 630)
 
@@ -184,6 +179,7 @@ def main():
 
     lost = False
     lost_count = 0
+
 
     def redraw_window():
         win.blit(BG, (0,0))
@@ -224,7 +220,7 @@ def main():
 
         if len(enemies) == 0:
             level += 1
-            wave_length += 5
+            wave_length += 8
             for i in range(wave_length):
                 enemy = Enemy(random.randrange(50, width-100), random.randrange(-1500, -100), random.choice(['red', 'blue', 'green']))
                 enemies.append(enemy)
@@ -280,9 +276,7 @@ def main_menu():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 main()
 
-
     pygame.quit()
-
 
 game_over =True
 main_menu()
