@@ -4,7 +4,7 @@ pygame.font.init()
 
 width, height =  750, 750
 win = pygame.display.set_mode((width, height))
-pygame.display.set_caption('Billy Hunter by djStens')
+pygame.display.set_caption('Billy Head Hunter by DJStens')
 
 
 # Load Images
@@ -282,7 +282,7 @@ game_over =True
 main_menu()
 
 
-# .
+# comment
 
 
 
