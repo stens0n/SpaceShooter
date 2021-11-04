@@ -49,7 +49,6 @@ class Laser:
         return collide(self, obj)
 
 
-
 class Ship:
     COOLDOWN = 30
 
@@ -76,7 +75,6 @@ class Ship:
             elif laser.collision(obj):
                 obj.health -= 10
                 self.lasers.remove(laser)
-
 
     def cooldown(self):
         if self.cool_down_counter >= self.COOLDOWN:
@@ -207,9 +205,11 @@ def main():
         clock.tick(FPS)
         redraw_window()
 
+
         if lives <= 0 or player.health <=0:
             lost = True
             lost_count += 1
+
 
         if lost:
             if lost_count > FPS * 3:
@@ -225,9 +225,11 @@ def main():
                 enemy = Enemy(random.randrange(50, width-100), random.randrange(-1500, -100), random.choice(['red', 'blue', 'green']))
                 enemies.append(enemy)
 
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 quit()
+
 
         keys = pygame.key.get_pressed()
         if keys[pygame.K_LEFT] and player.x - player_vel > 0: # left
@@ -246,12 +248,16 @@ def main():
             enemy.move(enemy_vel)
             enemy.move_lasers(laser_vel, player)
 
+
             if random.randrange(0, 3*60) == 1:
                 enemy.shoot()
+
 
             if collide(enemy, player):
                 player.health -= 10
                 enemies.remove(enemy)
+
+
             elif enemy.y + enemy.get_height() > height:
                 lives -= 1
                 enemies.remove(enemy)
@@ -268,7 +274,9 @@ def main_menu():
         title_label = title_font.render('Press The Mouse Button to Begin...', 1, (255, 255, 255))
         win.blit(title_label, (width/2 - title_label.get_width()/2, 350))
 
+
         pygame.display.update()
+
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -276,32 +284,13 @@ def main_menu():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 main()
 
+
     pygame.quit()
 
-game_over =True
+game_over = True
+
+
 main_menu()
 
 
-# comment
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+# end code
